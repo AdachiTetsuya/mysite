@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="Chart.min.js"></script>
+    <script src="chartjs-plugin-datalabels.min.js"></script> 
+    <title>自分のサイト</title>
+</head>
+<body>
+    <!-- トップ画像 -->
+    <div class="top-image">
+        <img src="./images/top-image.jpg" alt="京都大学の写真">
+        <p>京都大学が生んだ異端児</p>
+    </div>
+
+    <!-- 目次 -->
+    <details class="table_of_contents">
+        <summary>目次</summary>
+        <ol>
+            <li><a href="#my-name">名前</a></li>
+            <li><a href="#like-hate-food">好きな食べ物・嫌いな食べ物</a></li>
+            <li><a href="#career">経歴</a></li>
+            <li><a href="#spend-day">１日の過ごし方</a></li>
+            <li><a href="#questions">Q&A</a></li>
+        </ol>
+    </details>
+
+    <!-- 名前 -->
+    <div class="my-name" id="my-name">名前</div>
+    <p class="my-name-p">出美亜 太郎 (デミア タロウ)</p>
+
+    <!-- 好きな食べ物・嫌いな食べ物 -->
+    <div class="like-hate-food" id="like-hate-food">好きな食べ物・嫌いな食べ物</div>
+    <table>
+        <tr>
+            <th class="like">好きな食べ物</th>
+            <th class="hate">嫌いな食べ物</th>
+        </tr>
+        <tr>
+            <td class="like">ラーメン</td>
+            <td class="hate">アボカド</td>
+        </tr>
+        <tr>
+            <td class="like">餃子</td>
+            <td class="hate">小松菜</td>
+        </tr>
+        <tr>
+            <td class="like">コロッケ</td>
+            <td class="hate">トマト</td>
+        </tr>
+    </table>
+
+    <!-- 経歴 -->
+    <div class="career" id="career">経歴</div>
+    <div class="timeline">
+        <ul class="timeline-list">
+            <li class="timeline-list-item">
+                <div class="date">2001年10月</div>
+                <div class="content">鹿児島県で生まれる</div>
+            </li>
+            <li class="timeline-list-item">
+                <div class="date">2007年05月</div>
+                <div class="content">初めて水族館に行く</div>
+            </li>
+            <li class="timeline-list-item">
+                <div class="date">2011年05月</div>
+                <div class="content">中学校に進学</div>
+            </li>
+            <li class="timeline-list-item">
+                <div class="date">2018年01月</div>
+                <div class="content">水泳の大会で優勝</div>
+            </li>
+            <li class="timeline-list-item">
+                <div class="date">2020年04月</div>
+                <div class="content">京都大学に進学</div>
+            </li>
+            <li class="timeline-list-item">
+                <div class="date">2022年2月</div>
+                <div class="content">犬を飼い始める</div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- １日の過ごし方 -->
+    <div class="spend-day" id="spend-day">1日の過ごし方</div>
+    <canvas id="myChart"></canvas>
+    <script>
+        var ctx = document.getElementById("myChart");
+        var data = {
+            labels: ["睡眠", "学校", "部活","塾"],
+            datasets: [
+                {
+                    backgroundColor: ["#FA8072","#FFFF66","#FFC0CB","#34ddf0"],
+                    data: [8, 8, 4, 4],               
+                }
+            ]
+        };
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: {
+                legend: {
+                display: false
+                },
+                title: {
+                    display: true,
+                    fontSize: 20,
+                    text: '１日の過ごし方'
+                },
+                plugins: {
+                    datalabels: {
+                        color: '#000',
+                        font: {
+                            weight: 'bold',
+                            size: 30,
+                        },
+                        formatter: (value, ctx) => {
+                            let label = ctx.chart.data.labels[ctx.dataIndex];
+                            return label ;
+                        },
+                    }
+                }
+            },
+        });
+        myPieChart.canvas.parentNode.style.height = '800px';
+        myPieChart.canvas.parentNode.style.width = '800px';
+    </script>
+
+    <!-- Q&A -->
+    <div class="questions" id="questions">Q & A</div>
+    <dl class="Qa-Box">
+        <div class="Qa">
+            <dt>
+                <p>将来の夢はなんですか？</p>
+            </dt>
+            <dd>
+                <p>パン屋さんです。</p>
+            </dd>
+        </div>
+        <div class="Qa">
+            <dt>
+                <p>兄弟はいますか？</p>
+            </dt>
+            <dd>
+                <p>兄が２人と妹が１人います。</p>
+            </dd>
+        </div>
+        <div class="Qa">
+            <dt>
+                <p>趣味はなんですか？</p>
+            </dt>
+            <dd>
+                <p>本を読むことです。たまに川沿いで読書しています。</p>
+            </dd>
+        </div>
+    </dl>
+
+    
+</body>
+</html>
